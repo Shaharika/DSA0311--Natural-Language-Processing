@@ -1,0 +1,19 @@
+import re
+def main():
+    text = "The quick brown fox jumps over the lazy dog"
+    pattern = r'jumps'
+    match = re.search(pattern, text)
+    if match:
+        print("Found:", match.group())
+    else:
+        print("Pattern not found")
+    matches = re.findall(pattern, text)
+    if matches:
+        print("All occurrences:", matches)
+    else:
+        print("No matches found")
+    for match in re.finditer(pattern, text):
+        print("Start:", match.start(), "End:", match.end(), "Found:", match.group())
+
+if __name__ == "__main__":
+    main()
