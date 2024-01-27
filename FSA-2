@@ -1,0 +1,31 @@
+class FiniteStateAutomaton:
+    def __init__(self):
+        self.current_state = 'q0'
+
+    def transition(self, char):
+        if self.current_state == 'q0':
+            if char == 'a':
+                self.current_state = 'q1'
+        elif self.current_state == 'q1':
+            if char == 'b':
+                self.current_state = 'q2'
+            elif char == 'a':
+                self.current_state = 'q1'
+
+    def is_accept_state(self):
+        return self.current_state == 'q2'
+def main():
+    automaton = FiniteStateAutomaton()
+
+    strings = ["", "ab", "aab", "abb", "abab", "aabab", "abaab", "aabb", "abba"]
+    for string in strings:
+        for char in string:
+            automaton.transition(char)
+        if automaton.is_accept_state():
+            print(f"'{string}' is accepted.")
+        else:
+            print(f"'{string}' is not accepted.")
+        automaton.current_state = 'q0'
+
+if __name__ == "__main__":
+    main()
